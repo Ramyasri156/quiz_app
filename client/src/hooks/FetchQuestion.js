@@ -35,7 +35,7 @@ export const useFetchQestion = () => {
                 setGetData(prev => ({...prev, serverError : error}));
             }
         })();
-    }, [dispatch]);
+    }, []);
 
     return [getData, setGetData];
 }
