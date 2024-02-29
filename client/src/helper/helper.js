@@ -17,12 +17,14 @@ export function flagResult(totalPoints, earnPoints){
 /** check user auth  */
 export function CheckUserExist({ children }){
     const auth = useSelector(state => state.result.userId)
+    console.log(auth);
     return auth ? children : <Navigate to={'/'} replace={true}></Navigate>
 }
 
 /** get server data */
 export async function getServerData(url, callback){
     const data = await (await axios.get(url))?.data;
+    
     return callback ? callback(data) : data;
 }
 

@@ -55,7 +55,7 @@ export default function Quiz() {
         <h1 className='title text-light'>Quiz Application</h1>
 
         {/* display questions */}
-        <Questions onChecked={true} />
+        <Questions onChecked={onChecked} />
 
         <div className='grid'>
             { trace > 0 ? <button className='btn prev' onClick={onPrev}>Prev</button> : <div></div>}

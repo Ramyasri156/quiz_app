@@ -9,13 +9,15 @@ import * as Action from '../redux/question_reducer'
 export const useFetchQestion = () => {
     const dispatch = useDispatch();   
     const [getData, setGetData] = useState({ isLoading : false, apiData : [], serverError: null});
-
+    
     useEffect(() => {
         setGetData(prev => ({...prev, isLoading : true}));
 
         /** async function fetch backend data */
         (async () => {
+            
             try {
+                
                 const [{ questions, answers }] = await getServerData(`${process.env.REACT_APP_SERVER_HOSTNAME}/api/questions`, (data) => data)
                 
                 if(questions.length > 0){

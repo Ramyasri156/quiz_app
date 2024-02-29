@@ -6,6 +6,7 @@ export const resultReducer = createSlice({
         userId : null,
         result : []
     },
+    
     reducers : {
         setUserId : (state, action) => {
             state.userId = action.payload

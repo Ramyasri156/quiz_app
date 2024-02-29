@@ -8,6 +8,7 @@ export async function  getQuestions(req,res){
     try{
      const q = await Questions.find();
      res.json(q)
+     
     }catch (error){
         res.json({error})
     }
@@ -16,9 +17,8 @@ export async function  getQuestions(req,res){
 /**insert all questions */
 export async function insertQuestions(req,res){
     try{
-        Questions.insertMany({ questions, answers }, function(err, data){
-            res.json({ msg: "Data saved Successfully...!"})
-        })
+        await Questions.insertMany({questions,answers});
+        res.json({"message":"Saved successfully"});
     }catch(error){
         res.json({ error })
     }
