@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useEffect, useState,useRef} from "react";
 import { useDispatch } from "react-redux";
 import { getServerData } from "../helper/helper";
 
@@ -7,14 +7,17 @@ import * as Action from '../redux/question_reducer'
 
 /** fetch question hook to fetch api data and set value to store */
 export const useFetchQestion = () => {
+    const reference = useRef(false);
     const dispatch = useDispatch();   
     const [getData, setGetData] = useState({ isLoading : false, apiData : [], serverError: null});
     
     useEffect(() => {
+        reference.current = true;
         setGetData(prev => ({...prev, isLoading : true}));
 
         /** async function fetch backend data */
-        (async () => {
+        console.log("cur ref::",reference.current);
+        reference.current && (async () => {
             
             try {
                 
@@ -35,7 +38,8 @@ export const useFetchQestion = () => {
                 setGetData(prev => ({...prev, serverError : error}));
             }
         })();
-    }, []);
+        reference.current = false;
+    }, [dispatch, reference]);
 
     return [getData, setGetData];
 }
